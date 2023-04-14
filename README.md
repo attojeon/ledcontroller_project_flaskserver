@@ -10,3 +10,7 @@
 
 # flask 웹앱 서비스
 - 소스: flaskapp.py
+
+
+# 웹접속
+- http://~ 로 접속
