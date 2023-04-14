@@ -58,5 +58,5 @@ async def ledon(ctx):
     await ctx.send(msg)
 
 
-TOKEN = 'MTA4NDAzMDQzODQxMjEyODI1Ng.G5kXqS.WBg_P1WXAYa2zysF28sPscu7MJ-WSd6AzzIW7I'  
-bot.run( TOKEN)
+import config
+bot.run( config.DISCORD_TOKEN)
