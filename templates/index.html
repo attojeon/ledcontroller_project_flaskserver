@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>LED 점멸하기</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">LED 점멸하기</h1>
+        <p>전구 이미지를 클릭하면 전구가 온오프할 수 있습니다.</p>
+        <div class="card">
+            <img src="{{ url_for('static', filename='led_on.png') }}" id='led' , onclick='led_on_off()'>
+        </div>
+    </div>
+
+    <script>
+        // 모바일(안드로이드/iOS)에서, fetch(http)호출을 허용하지 않음. 
+        var led = document.getElementById('led');
+        var led_on = false;
+        function led_on_off() {
+            if (led_on) {
+                led.src = "{{url_for('static', filename='led_on.png') }}";
+                led_on = false;
+                fetch('http://127.0.0.1:8000/led_onoff?sw=on', {
+                    method: 'GET'
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error));
+            } else {
+                led.src = "{{url_for('static', filename='led_off.png') }}";
+                led_on = true;
+                fetch('http://127.0.0.1:8000/led_onoff?sw=off', {
+                    method: 'GET'
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error));
+            }
+        }
+    </script>
+</body>
+</html>
