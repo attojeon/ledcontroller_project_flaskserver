@@ -9,7 +9,6 @@ LED_P = 25
 GPIO.setup(LED_P, GPIO.OUT)
 LED_S = 'on'
 
-
 def led_on():
     global LED_S
     print(">>> led light on!")
